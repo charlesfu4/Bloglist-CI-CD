@@ -1,0 +1,26 @@
+{
+  "name": "bloglist-ci-cd",
+  "version": "1.0.0",
+  "description": "Bloglist CI/CD",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "frontend": "cd client && npm start",
+    "api": "cd server && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run frontend\"",
+    "heroku-postbuild": "cd client && npm build && npm run build",
+    "logs:prod": "heroku logs --tail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlesfu4/Bloglist-CI-CD.git"
+  },
+  "author": "Chu-Cheng Fu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charlesfu4/Bloglist-CI-CD/issues"
+  },
+  "homepage": "https://github.com/charlesfu4/Bloglist-CI-CD#readme",
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  }
+}
