@@ -7,20 +7,21 @@ describe('<Blog />', () => {
   let component
   const mockHandler = jest.fn()
 
-
   beforeEach(() => {
     const testBlogs = {
-      title:'test-title',
-      author:'test-author',
-      url:'test-url',
-      likes: 911911911
+      title: 'test-title',
+      author: 'test-author',
+      url: 'test-url',
+      likes: 911911911,
     }
     component = render(
       <Blog blog={testBlogs} handleUpdateOnClick={mockHandler} />
     )
   })
   test('renders content with only title and author by default', () => {
-    const div = component.container.querySelector('.togglableContent div:not([style*="display: none;"])')
+    const div = component.container.querySelector(
+      '.togglableContent div:not([style*="display: none;"])'
+    )
     // console.log(prettyDOM(div))
     expect(div).toHaveTextContent('test-title')
     expect(div).toHaveTextContent('test-author')
@@ -32,7 +33,9 @@ describe('<Blog />', () => {
     const button = component.getByText('view')
     fireEvent.click(button)
 
-    const div = component.container.querySelector('.togglableContent div:not([style*="display: none;"])')
+    const div = component.container.querySelector(
+      '.togglableContent div:not([style*="display: none;"])'
+    )
     // console.log(prettyDOM(div))
     expect(div).toHaveTextContent('test-title')
     expect(div).toHaveTextContent('test-author')

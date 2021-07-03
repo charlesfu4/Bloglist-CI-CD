@@ -1,4 +1,4 @@
-.error{
+.error {
   color: red;
   background: lightgrey;
   font-size: 20px;
@@ -7,7 +7,7 @@
   padding: 10px;
   margin-bottom: 10px;
 }
-.note{
+.note {
   color: green;
   background: lightgrey;
   font-size: 20px;
@@ -17,7 +17,7 @@
   margin-bottom: 10px;
 }
 
-.blogBlock{
+.blogBlock {
   color: black;
   font-size: 15px;
   border-style: solid;

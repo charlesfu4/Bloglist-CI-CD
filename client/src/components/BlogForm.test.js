@@ -1,4 +1,3 @@
-
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent } from '@testing-library/react'
@@ -8,9 +7,7 @@ describe('<BlogForm />', () => {
   let component
   const mockHandler = jest.fn()
   beforeEach(() => {
-    component = render(
-      <BlogForm createBlog={mockHandler} />
-    )
+    component = render(<BlogForm createBlog={mockHandler} />)
   })
 
   test('the form calls the event handler it received as props with the right details ', () => {
@@ -20,13 +17,13 @@ describe('<BlogForm />', () => {
     const form = component.container.querySelector('form')
 
     fireEvent.change(inputTitle, {
-      target: { value: 'test-title' }
+      target: { value: 'test-title' },
     })
     fireEvent.change(inputAuthor, {
-      target: { value: 'test-author' }
+      target: { value: 'test-author' },
     })
     fireEvent.change(inputUrl, {
-      target: { value: 'test-url' }
+      target: { value: 'test-url' },
     })
 
     fireEvent.submit(form)

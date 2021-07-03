@@ -1,4 +1,4 @@
-# Getting Started with React app 
+# Getting Started with React app
 
 Before starting the app, remember to also download the bloglist-backend part under the same root folder and set it up
 

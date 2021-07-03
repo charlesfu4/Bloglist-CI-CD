@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import {
-  Switch, Route, useRouteMatch
-} from "react-router-dom"
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
 import BlogList from './components/BlogList'
 import BlogForm from './components/BlogForm'
 import Blog from './components/Blog'
@@ -20,9 +18,9 @@ import { initializeUsers } from './reducers/usersReducer'
 
 const App = () => {
   const dispatch = useDispatch()
-  const loginUser = useSelector(state => state.loginUser) 
-  const users = useSelector(state => state.users) 
-  const blogs = useSelector(state => state.blogs)
+  const loginUser = useSelector((state) => state.loginUser)
+  const users = useSelector((state) => state.users)
+  const blogs = useSelector((state) => state.blogs)
 
   useEffect(() => {
     dispatch(initializeBlogs())
@@ -34,15 +32,13 @@ const App = () => {
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBloglistUser')
-    if(loggedUserJSON) {
+    if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       dispatch(setUser(user))
       blogService.setToken(user.token)
     }
   }, [dispatch])
 
-
-  
   const blogFromRef = useRef() // blog form ref to the togglable component
 
   // handle logout request
@@ -54,7 +50,11 @@ const App = () => {
 
   // togglable blog form with a ref to togglevisibility
   const blogForm = () => (
-    <Togglable forwardButton={'create new blog'} backButton={'cancel'} ref={blogFromRef}>
+    <Togglable
+      forwardButton={'create new blog'}
+      backButton={'cancel'}
+      ref={blogFromRef}
+    >
       <BlogForm />
     </Togglable>
   )
@@ -62,41 +62,38 @@ const App = () => {
   // router match for users id
   const matchUser = useRouteMatch('/users/:id')
   const user = matchUser
-    ? users.find(user => user.id === matchUser.params.id)
+    ? users.find((user) => user.id === matchUser.params.id)
     : null
   // router match for blogs id
   const matchBlog = useRouteMatch('/blogs/:id')
   const blog = matchBlog
-    ? blogs.find(blog => blog.id === matchBlog.params.id)
+    ? blogs.find((blog) => blog.id === matchBlog.params.id)
     : null
 
   return (
     <div className="container">
-      {loginUser === null ?
-        <LoginForm /> :
+      {loginUser === null ? (
+        <LoginForm />
+      ) : (
         <div>
-          <Navtop user={loginUser} handleOnClick={handleLogout}/>
+          <Navtop user={loginUser} handleOnClick={handleLogout} />
           <Notification />
           <h1>Blogs</h1>
           <Switch>
-            {blog
-              ?
-              <Route path='/blogs/:id'>
-                <Blog blog={blog}/>
+            {blog ? (
+              <Route path="/blogs/:id">
+                <Blog blog={blog} />
               </Route>
-              : null
-            }
-            {user
-              ?
-              <Route path='/users/:id'>
-                <User user={user}/>
+            ) : null}
+            {user ? (
+              <Route path="/users/:id">
+                <User user={user} />
               </Route>
-              : null
-            }
-            <Route path='/users'>
+            ) : null}
+            <Route path="/users">
               <Users />
             </Route>
-            <Route path='/'>
+            <Route path="/">
               <div>
                 {blogForm()}
                 <BlogList user={loginUser} />
@@ -104,7 +101,7 @@ const App = () => {
             </Route>
           </Switch>
         </div>
-      }
+      )}
     </div>
   )
 }

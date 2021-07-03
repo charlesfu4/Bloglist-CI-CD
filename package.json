@@ -2,14 +2,17 @@
   "name": "bloglist-ci-cd",
   "version": "1.0.0",
   "description": "Bloglist CI/CD",
-  "main": ".eslintrc.js",
-  "scripts": {
+  "main": "index.js",
+  "scripts": { 
+    "start": "node index.js",
     "frontend": "cd client && npm start",
-    "api": "cd server && npm run dev",
-    "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run frontend\"",
-    "start-prod": "cd server && npm start",
+    "lint": "eslint .",
+    "dev": "cross-env NODE_ENV=development concurrently --kill-others-on-fail \"nodemon index.js\" \"npm run frontend\"",
+    "start:prod": "cross-env NODE_ENV=production npm start",
+    "start:test": "cross-env NODE_ENV=test npm start",
     "heroku-postbuild": "cd client && npm build && npm run build",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "test:e2e": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,30 @@
   },
   "homepage": "https://github.com/charlesfu4/Bloglist-CI-CD#readme",
   "dependencies": {
-    "concurrently": "^6.2.0"
+    "bcrypt": "^5.0.0",
+    "concurrently": "^6.2.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "mongoose": "^5.11.9",
+    "mongoose-unique-validator": "^2.0.3"
+  },
+  "devDependencies": {
+    "cypress": "^7.6.0",
+    "eslint": "^6.6.0",
+    "eslint-plugin-cypress": "^2.11.3",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-react": "^7.24.0",
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.9",
+    "prettier": "2.3.2",
+    "supertest": "^6.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

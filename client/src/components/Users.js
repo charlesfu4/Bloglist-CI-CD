@@ -4,23 +4,21 @@ import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
 
 const style = {
-  paddingRight: 5
+  paddingRight: 5,
 }
 const Users = () => {
-  const users = useSelector(state => state.users)
-  const blogTab = () => (users.map(user => (
-    <tr key={user.id}>
-      <td style={style}>
-        <Link to={`/users/${user.id}`}>
-          {user.username}
-        </Link>
-      </td>
-      <td>{user.blogs.length}</td>
-    </tr>
-  )))
-  
+  const users = useSelector((state) => state.users)
+  const blogTab = () =>
+    users.map((user) => (
+      <tr key={user.id}>
+        <td style={style}>
+          <Link to={`/users/${user.id}`}>{user.username}</Link>
+        </td>
+        <td>{user.blogs.length}</td>
+      </tr>
+    ))
 
-  return(
+  return (
     <div>
       <h3>Users</h3>
       <Table striped hover>

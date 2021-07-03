@@ -14,27 +14,36 @@ const Togglable = React.forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => {
     return {
-      toggleVisibility
+      toggleVisibility,
     }
   })
 
   const fullVisibility = () => {
-    return(
-      props.succintInfo !== undefined ?
-        <div style={showWhenVisible}>
-          {props.succintInfo} <Button variant="primary" onClick={toggleVisibility}>{props.backButton}</Button>
-          {props.children}
-        </div> :
-        <div style={showWhenVisible}>
-          {props.children} <Button variant="primary" onClick={toggleVisibility}>{props.backButton}</Button>
-        </div>
+    return props.succintInfo !== undefined ? (
+      <div style={showWhenVisible}>
+        {props.succintInfo}{' '}
+        <Button variant="primary" onClick={toggleVisibility}>
+          {props.backButton}
+        </Button>
+        {props.children}
+      </div>
+    ) : (
+      <div style={showWhenVisible}>
+        {props.children}{' '}
+        <Button variant="primary" onClick={toggleVisibility}>
+          {props.backButton}
+        </Button>
+      </div>
     )
   }
 
   return (
-    <div className='togglableContent'>
-      <div style={hideWhenVisible} >
-        {props.succintInfo} <Button variant="primary" onClick={toggleVisibility}>{props.forwardButton}</Button>
+    <div className="togglableContent">
+      <div style={hideWhenVisible}>
+        {props.succintInfo}{' '}
+        <Button variant="primary" onClick={toggleVisibility}>
+          {props.forwardButton}
+        </Button>
       </div>
       {fullVisibility()}
     </div>
@@ -43,7 +52,7 @@ const Togglable = React.forwardRef((props, ref) => {
 
 Togglable.propTypes = {
   backButton: PropTypes.string.isRequired,
-  forwardButton: PropTypes.string.isRequired
+  forwardButton: PropTypes.string.isRequired,
 }
 
 Togglable.displayName = 'Togglable'

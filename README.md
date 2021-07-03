@@ -1,6 +1,7 @@
-# Getting Started with node.js backend 
+# Getting Started with node.js backend
 
 Before starting the backend, configure your own `.env` files as follow
+
 ```
 MONGODB_URI=mongodb+srv://fullstack:${YOUR_MONGODB_PASSWORD}@${YOUR_MONGODB_URL}.mongodb.net/bloglist?retryWrites=true
 PORT=5000
@@ -15,5 +16,7 @@ Then install the required packaged by
 To run the test defined under `/test/`, simply run
 
 ### `npm test`
+
 ### `npm test -- ${TEST_PATH}`
+
 ### `npm test -- -t 'TEST_NAME'`

@@ -3,7 +3,7 @@ const baseUrl = '/api/users'
 
 const getUsers = async () => {
   const response = await axios.get(baseUrl)
-  return response.data 
+  return response.data
 }
 
 export default { getUsers }
