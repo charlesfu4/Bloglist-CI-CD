@@ -26,9 +26,13 @@ jobs:
       - name: build
         run: npm run build
       - name: test
+        env:
+          NODE_ENV: 'test'
         run: npm run test
       - name: e2e tests
         uses: cypress-io/github-action@v2
+        env:
+          NODE_ENV: 'test'
         with:
           command: npm run test:e2e
           start: npm run start:test 
