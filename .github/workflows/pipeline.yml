@@ -6,7 +6,7 @@ on:
       - main
 
 env: 
-  MOGODB_URI: ${{ secrets.MONGODB_URI }}
+  MONGODB_URI: ${{ secrets.MONGODB_URI }}
   TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
   SECRET: ${{ secrets.SECRET }}
   PORT: ${{ secrets.PORT }} 
