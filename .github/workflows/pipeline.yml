@@ -21,15 +21,15 @@ jobs:
         run: npm run build
       - name: test
         env: 
-          TEST_MONGODB_URI: ${{ secret.TEST_MONGODB_URI }}
-          SECRET: ${{ secret.SECRET }}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          SECRET: ${{ secrets.SECRET }}
           PORT: 5000
         run: npm run test
       - name: e2e tests
         uses: cypress-io/github-action@v2
         env: 
-          TEST_MONGODB_URI: ${{ secret.TEST_MONGODB_URI }}
-          SECRET: ${{ secret.SECRET }}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          SECRET: ${{ secrets.SECRET }}
           PORT: 5000
         with:
           command: npm run test:e2e
