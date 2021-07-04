@@ -56,7 +56,6 @@ const Blog = ({ blog }) => {
   }
   // determine if remove button will appear
   const removeButton = (targetedBlog) => {
-    console.log(targetedBlog)
     return loginUser.username === targetedBlog.user.username ? (
       <Button
         variant="danger"

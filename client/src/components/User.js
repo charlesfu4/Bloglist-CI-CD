@@ -2,7 +2,6 @@ import React from 'react'
 
 const User = ({ user }) => {
   const blogs = user.blogs.map((blog) => <li key={blog.id}>{blog.title}</li>)
-  console.log(user)
 
   return (
     <div>
