@@ -19,8 +19,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: npm install 
-        run: npm install && cd client && npm install
+      - name: install backend
+        run: npm install 
+      - name: install client
+        run: cd client && npm install
       - name: lint
         run: npm run lint
       - name: build
