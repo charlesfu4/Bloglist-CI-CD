@@ -12,6 +12,7 @@
     "dev": "cross-env NODE_ENV=development concurrently --kill-others-on-fail \"nodemon index.js\" \"npm run frontend\"",
     "start:prod": "cross-env NODE_ENV=production npm start",
     "start:test": "cross-env NODE_ENV=test npm start",
+    "heroku-postbuild": "cd client && npm i && npm run build",
     "logs:prod": "heroku logs --tail",
     "test:e2e": "cypress run"
   },
