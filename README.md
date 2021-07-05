@@ -1,22 +1,36 @@
-# Getting Started with node.js backend
+# Getting Started with the Bloglist app 
 
+## Environmental variables
 Before starting the backend, configure your own `.env` files as follow
 
 ```
 MONGODB_URI=mongodb+srv://fullstack:${YOUR_MONGODB_PASSWORD}@${YOUR_MONGODB_URL}.mongodb.net/bloglist?retryWrites=true
-PORT=5000
-
 TEST_MONGODB_URI=mongodb+srv://fullstack:${YOUR_MONGODB_PASSWORD}@${YOUR_MONGODB_URL}.mongodb.net/bloglist-test?retryWrites=true
+PORT=5000
+SECRET={YOUR_OWN_SECRET}
 ```
 
-Then install the required packaged by
+## Setup
 
-### `npm install`
+#### `npm install`
+#### `npm run build`
+#### `npm start:prod`
 
-To run the test defined under `/test/`, simply run
 
-### `npm test`
+## Testing
 
-### `npm test -- ${TEST_PATH}`
+### Backend integration test
 
-### `npm test -- -t 'TEST_NAME'`
+#### `npm run test`
+
+### End to end test
+
+#### `npm run start:test`
+
+Then open another terminal and run
+
+#### `npm run test:e2e`
+
+
+## Deployed Version
+If you are not interested in running the application on your local machine. You can access the Bloglist through https://bloglistredux.herokuapp.com.
