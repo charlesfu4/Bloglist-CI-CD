@@ -43,7 +43,7 @@ jobs:
           start: npm run start:test 
           wait-on: http://localhost:5000
       - name: deploy to heroku
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message)), '#skip') }}
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -60,3 +60,29 @@ jobs:
           DEFAULT_BUMP: 'patch'
           WITH_V: true
           RELEASE_BRANCHES: 'main'
+      - name: indicate a success deployment 
+        uses: 8398a7/action-slack@v3
+        with:
+          # job_name: deploy heroku
+          status: custom 
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+          custom_payload: |
+            {
+              username: 'github-action',
+              attachments: [{
+                color: 'good',
+                text: `A new version deployed to https://bloglistredux.herokuapp.com/ (${process.env.AS_COMMIT}) by ${process.env.AS_AUTHOR} build took ${process.env.AS_TOOK}`,
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+        if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message)), '#skip') && success() }}
+      - name: indicate a failure build 
+        uses: 8398a7/action-slack@v3
+        with:
+          # job_name: build
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+        if: ${{ failure() }}
