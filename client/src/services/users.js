@@ -6,4 +6,8 @@ const getUsers = async () => {
   return response.data
 }
 
-export default { getUsers }
+const signupUser = async (credentials) => {
+  await axios.post(baseUrl, credentials)
+}
+
+export default { getUsers, signupUser }

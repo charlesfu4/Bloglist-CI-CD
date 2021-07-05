@@ -15,6 +15,7 @@ import { addNotification } from './reducers/notificationReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from './reducers/loginReducer'
 import { initializeUsers } from './reducers/usersReducer'
+import SignupForm from './components/SignupForm'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -73,7 +74,11 @@ const App = () => {
   return (
     <div className="container">
       {loginUser === null ? (
-        <LoginForm />
+        <div>
+          <LoginForm />
+          <SignupForm />
+          <Notification />
+        </div>
       ) : (
         <div>
           <Navtop user={loginUser} handleOnClick={handleLogout} />

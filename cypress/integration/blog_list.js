@@ -16,8 +16,32 @@ describe('Blog app', function () {
     cy.visit('http://localhost:5000')
   })
 
-  it('Login form is shown', function () {
+  it('Login and Signup form is shown', function () {
     cy.contains('login')
+    cy.contains('signup')
+  })
+
+  describe('Signup', function () {
+    it('succeeds with correct fields', function () {
+      cy.contains('signup').click()
+      cy.getBySel('susername').type('dogisgood')
+      cy.getBySel('sname').type('123213')
+      cy.getBySel('spassword').type('wrongofcourse')
+      cy.getBySel('signup-button').click()
+
+      cy.getBySel('noti').contains('Successfully signup! Try to log in now.')
+    })
+
+    it('fail with incorrect credentials', function () {
+      cy.contains('signup').click()
+      cy.getBySel('susername').type('ccfu')
+      cy.getBySel('sname').type('123213')
+      cy.getBySel('spassword').type('wrongofcourse')
+      cy.getBySel('signup-button').click()
+
+      cy.getBySel('noti').contains('Error')
+      cy.getBySel('noti').should('have.css', 'color', 'rgb(33, 37, 41)')
+    })
   })
 
   describe('Login', function () {
